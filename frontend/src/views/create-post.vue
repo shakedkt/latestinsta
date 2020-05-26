@@ -5,23 +5,26 @@
     <section class="new-post">
       <div class="create-body">
         <form @submit.prevent="addPost" class="create-form">
-        
           <div class="create-form-body">
             <div class="create-top">
-            <input
-              class="form-input"
-              type="text"
-              v-model="post.desc"
-              placeholder="write a caption here"
-              required
-            />
- <button class="publish">
-            <img src="../photos/addPost.png" />
-          </button>
-</div>
+              <input
+                class="form-input"
+                type="text"
+                v-model="post.desc"
+                placeholder="write a caption here"
+                required
+              />
+              <button class="publish">
+                <img src="../photos/addPost.png" />
+              </button>
+            </div>
             <label>
               <input class="choose-file" @change="uploadImg" type="file" />
-              <img class="place-holder" v-if="!post.uploadedImg" src="../photos/import_placeholder.png" />
+              <img
+                class="place-holder"
+                v-if="!post.uploadedImg"
+                src="../photos/import_placeholder.png"
+              />
               <img v-if="post.uploadedImg" :src="post.uploadedImg" />
             </label>
           </div>
@@ -72,10 +75,12 @@ export default {
         isliked: false,
         timeStamp: Date.now()
       };
-      await this.$store.dispatch({ type: "addPost", post });
-      const userName = post.createdBy.userName      
-      await this.$store.dispatch({ type: "updateUser", userName }); 
-      this.$router.push("/user/" + userName + "/home");
+      if (post.imgUrl) {
+        await this.$store.dispatch({ type: "addPost", post });
+        const userName = post.createdBy.userName;
+        await this.$store.dispatch({ type: "loadUser", userName });
+        this.$router.push("/user/" + userName + "/home");
+      }
     },
     async uploadImg(ev) {
       const res = await this.$store.dispatch({ type: "addImg", ev });

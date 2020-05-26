@@ -28,13 +28,14 @@
 
   .login-section-btn {
     background-color: $clr3;
-    padding: 10px 96px;
+    padding: 10px 0px;
     opacity: 0.5;
     text-align: center;
     margin-top: 10px;
     border-radius: rem(5px);
     font-weight: bold;
     color: white;
+    width: 100%;
   }
 
   .login-section-btn:hover {
@@ -50,7 +51,7 @@
 
   .form-input {
     background-color: $clr1;
-    padding: 10px 110px 10px 3px;
+    padding: 10px 110px 0px 3px;
     outline: none;
     border: 1px solid $clr2;
     border-radius: rem(5px);
@@ -117,4 +118,18 @@ hr {
   font-size: rem(10px);
   position: fixed;
   bottom: 1px;
+  display: flex;
+  align-items: center;
+
+  span{
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0 5px;
+  }
+}
+
+.loading-svg{
+  width: 50px;
+  margin: 0 auto;
 }

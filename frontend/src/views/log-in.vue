@@ -22,13 +22,18 @@
               v-model="loginCred.password"
               placeholder="Password"
             />
+
+       <div class="loading-svg" v-if="this.isLoading">
+          <img src="../photos/loading.svg" />
+        </div>
+
             <br />
             <div class="error-msg">{{this.msg}}</div>
             <button class="login-section-btn">Login</button>
           </form>
         </div>
         <hr />
-
+ 
         <div class="guest-mode">
           <span class="login-as-guest" @click="loginAsGuest">Login as guest</span>
         </div>
@@ -41,10 +46,10 @@
           </router-link>
         </span>
       </div>
-    </div>
+      </div>
     <span
       class="warning-msg"
-    >FOR DEMONSTRATION AND EDUCATIONAL PURPOSES ONLY, DO NOT ENTER A REAL PASSWORD</span>
+    >DONT FORGET TO CHECK ON MOBILE   <span> | </span>FOR DEMONSTRATION AND EDUCATIONAL PURPOSES ONLY</span>
   </section>
 </template>
 
@@ -58,6 +63,7 @@ export default {
       loginCred: {},
       signupCred: {},
       userToEdit: {},
+      isLoading: false,
       msg: "",
       isGuest: false
     };
@@ -75,12 +81,17 @@ export default {
   },
   methods: {
     async doLogin() {
+      this.isLoading = !this.isLoading;
       const cred = this.loginCred;
-      if (!cred.userName || (!cred.password && this.isGuest === false))
+      if (!cred.userName || (!cred.password && this.isGuest === false)) {
+        this.isLoading = !this.isLoading;
         return (this.msg = "Please enter userName/password");
+      }
+
       var user = await this.$store.dispatch({ type: "login", userCred: cred });
 
       this.loginCred = {};
+      this.isLoading = !this.isLoading;
       if (user) this.$router.push("/user/" + user.userName + "/home");
       else return (this.msg = "userName or password incorrect");
     },
@@ -89,10 +100,10 @@ export default {
       this.$store.dispatch({ type: "logout" });
       if (this.isGuest === true) this.isGuest = false;
     },
-  
+
     async loginAsGuest() {
       this.loginCred.userName = "guest";
-      this.loginCred.password = "1";
+      this.loginCred.password = "1234567";
       this.isGuest = true;
       this.doLogin();
     }

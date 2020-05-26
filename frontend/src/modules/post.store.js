@@ -12,8 +12,9 @@ export const postStore = {
         addPost(state, { post }) {
             state.posts.unshift(post)
         },
-        addComment(state, { comment }) {
+        addComment(state, { comment }) {            
             const post = state.posts.find(post => {
+                
                 return post._id === comment.postId
             })
             post.comments.unshift(comment)
@@ -26,7 +27,6 @@ export const postStore = {
                 return currPost._id === post._id
             })
             console.log(currPost.isLiked);
-            
         }
     },
     getters: {
@@ -35,13 +35,12 @@ export const postStore = {
         },
     },
     actions: {
-        async loadPosts(context) {
-            const posts = await postService.query();
-            console.log('posts store', posts);
+        async loadPosts(context, {amount}) {
+            const posts = await postService.query(amount);
 
             context.commit({ type: 'setPosts', posts })
         },
-        async addComment(context, { comment }) {
+        async addComment(context, { comment }) {            
             await postService.addComment(comment);
             context.commit({
                 type: 'addComment',
@@ -75,7 +74,6 @@ export const postStore = {
             })
         },
         async changeLike(context, { post }) {
-            console.log('got here post.store');
 
             await postService.changeLike(post);
             context.commit({

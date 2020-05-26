@@ -16,7 +16,7 @@
           <input
             class="form-input"
             type="text"
-            v-model="signupCred.userName"
+            v-model="signupCred.username"
             placeholder="Username"
           />
           <br />
@@ -24,7 +24,7 @@
             class="form-input"
             type="password"
             v-model="signupCred.password"
-            placeholder="Username"
+            placeholder="Password"
           />
           <div class="error-msg">{{this.msg}}</div>
           <button class="login-section-btn">Sign up</button>
@@ -53,15 +53,19 @@ export default {
       isGuest: false
     };
   },
-    doSignup() {
+  methods: {
+   async doSignup() {
       const cred = this.signupCred;
+      
       if(cred.password.length < 7) {
           this.msg = 'password must be at least 7 characters'
           return
-      };
+      }
       this.$store.dispatch({ type: "signup", userCred: cred });
       this.$router.push("/");
-    },
+    }
+   
+  }
 };
 </script>
 

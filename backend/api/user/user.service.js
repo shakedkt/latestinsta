@@ -1,6 +1,5 @@
 
 const dbService = require('../../services/db.service.js')
-// const postService = require('../post/post.service.js')
 const ObjectId = require('mongodb').ObjectId
 
 module.exports = {
@@ -9,7 +8,8 @@ module.exports = {
     getByEmail,
     remove,
     update,
-    add
+    add,
+    removePost
 }
 
 async function query(filterBy = {}) {
@@ -30,7 +30,6 @@ async function getByUserName(userName) {
     const collection = await dbService.getCollection('user')
     try {
         const user = await collection.findOne({userName})
-        
         return user
     } catch (err) {
         console.log(`ERROR: while finding user ${userName}`)
@@ -74,9 +73,33 @@ async function update(post) {
     }
 }
 
+async function removePost(post) {
+    const collection = await dbService.getCollection('user')
+
+    try {
+        await collection.updateOne(
+            { "userName" : post[0].createdBy.userName},
+            { "$pull": { "posts": {"_id": ObjectId(post[0]._id)}}});
+        return ; 
+    } catch (err) {
+        console.log(`ERROR: cannot remove post ${post}`)
+        throw err;
+    }
+}
 
 async function add(user) {
     const collection = await dbService.getCollection('user')
+
+    user.avatar = 'https://i.imgur.com/tR6ajVu.jpg'
+    user.isAdmin = false
+    user.isGuest = false
+    user.followers = []
+    user.following = []
+    user.posts = []
+    user.likeCount = 0
+
+    console.log('user at add',user);
+    
     try {
         await collection.insertOne(user);
         return user;

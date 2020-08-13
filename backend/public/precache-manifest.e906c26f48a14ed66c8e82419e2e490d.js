@@ -1,7 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "317f2125d3d25c71be58",
-    "url": "/css/app.c93d1e13.css"
+    "revision": "4161cfdecfea3487a08b",
+    "url": "/css/app.ab8e40ff.css"
+  },
+  {
+    "revision": "bcbde461b1330354c7d28f90910e4a2d",
+    "url": "/fonts/VeganStylePersonalUse-5Y58.ttf"
   },
   {
     "revision": "2155508e9b7c4317141d6f6aa9c5212d",
@@ -20,16 +24,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/login-background.1052f748.png"
   },
   {
-    "revision": "3fa679b1ba5565d881b97a7b1b70cc42",
-    "url": "/img/logo.3fa679b1.png"
+    "revision": "b6ccca59fa77d6d1a9e2535bb6a1681c",
+    "url": "/img/newLogo.b6ccca59.png"
   },
   {
-    "revision": "d0934d25b6765d1bca9dd52d1b90b496",
+    "revision": "70ecb3d1ca0ed3dd9580f795cf60d0f9",
     "url": "/index.html"
   },
   {
-    "revision": "317f2125d3d25c71be58",
-    "url": "/js/app.576008ab.js"
+    "revision": "4161cfdecfea3487a08b",
+    "url": "/js/app.c830de9b.js"
   },
   {
     "revision": "6e1f571112635dd0848e",

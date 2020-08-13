@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.1403000ba85db56986fe503f9cb98d4a.js"
+  "/precache-manifest.e906c26f48a14ed66c8e82419e2e490d.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "instagram"});

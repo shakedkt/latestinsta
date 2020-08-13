@@ -1,7 +1,7 @@
 <template>
   <section class="signup-page">
     <div class="sign-in-section">
-      <img class="login-logo" src="../photos/logo.png" alt="logo" />
+      <img class="login-logo" src="../photos/newLogo.png" alt="logo" />
       <div>
         <form @submit.prevent="doSignup">
           <input class="form-input" type="email" v-model="signupCred.email" placeholder="Email" />

@@ -12,7 +12,7 @@
 
 <router-link :to="'/user/' + user.userName + '/home'" class="home" exact>
   <div class="logo-img">
-      <img src="../photos/logo.png">
+      <img src="../photos/newLogo.png">
   </div>
       </router-link>
 

@@ -6,7 +6,7 @@
 
     <div class="signup-or-login">
       <div class="sign-in-section">
-        <img class="login-logo" src="../photos/logo.png" alt="logo" />
+        <img class="login-logo" src="../photos/newLogo.png" alt="logo" />
         <div>
           <form @submit.prevent="doLogin">
             <input
